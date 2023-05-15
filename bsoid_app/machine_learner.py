@@ -33,9 +33,9 @@ class Protocol:
             x_train, self.x_test, y_train, self.y_test = train_test_split(x, y.T, test_size=self.part, random_state=42)
             print(str.join('', ('Training random forest classifier on randomly partitioned '
                                 '{}%...'.format((1 - self.part) * 100))))
-            self.validate_clf = RandomForestClassifier(random_state=42)
+            self.validate_clf = RandomForestClassifier(random_state=42,n_jobs=-1)
             self.validate_clf.fit(x_train, y_train)
-            self.clf = RandomForestClassifier(random_state=42)
+            self.clf = RandomForestClassifier(random_state=42,n_jobs=-1)
             self.clf.fit(x, y.T)
             self.predictions = self.clf.predict(self.features.T)
             print('Done training random forest classifier mapping '
