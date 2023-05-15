@@ -127,7 +127,7 @@ def run(predict_folders):
         timestr = time.strftime("_%Y%m%d_%H%M")
         csvname = os.path.basename(filenames[i]).rpartition('.')[0]
         fs_labels_pad = np.pad(fs_labels[i], (6, 0), 'edge')
-        df2 = pd.DataFrame(fs_labels_pad, columns={'B-SOiD labels'})
+        df2 = pd.DataFrame(fs_labels_pad, columns=['B-SOiD labels'])
         df2.loc[len(df2)] = ''
         df2.loc[len(df2)] = ''
         df2 = df2.shift()

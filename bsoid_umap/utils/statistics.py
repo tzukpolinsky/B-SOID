@@ -77,9 +77,9 @@ def behv_dur(labels):
     :return dur_stats: object, behavioral duration statistics data frame
     """
     lengths, pos, grp = rle(labels)
-    df_lengths = pd.DataFrame(lengths, columns={'Run lengths'})
-    df_grp = pd.DataFrame(grp, columns={'B-SOiD labels'})
-    df_pos = pd.DataFrame(pos, columns={'Start time (frames)'})
+    df_lengths = pd.DataFrame(lengths, columns=['Run lengths'])
+    df_grp = pd.DataFrame(grp, columns=['B-SOiD labels'])
+    df_pos = pd.DataFrame(pos, columns=['Start time (frames)'])
     runlengths = [df_grp, df_pos, df_lengths]
     runlen_df = pd.concat(runlengths, axis=1)
     beh_t = behv_time(labels)

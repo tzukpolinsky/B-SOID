@@ -95,7 +95,7 @@ def run(predict_folders):
         df_tm1.to_csv((os.path.join(OUTPUT_PATH, str.join('', ('bsoid_transitions_10Hz', timestr, csvname, '.csv')))),
                       index=True, chunksize=10000, encoding='utf-8')
         labels_fshigh_pad = np.pad(labels_fshigh[i], (6, 0), 'edge')
-        df2 = pd.DataFrame(labels_fshigh_pad, columns={'B-SOiD labels'})
+        df2 = pd.DataFrame(labels_fshigh_pad, columns=['B-SOiD labels'])
         df2.loc[len(df2)] = ''
         df2.loc[len(df2)] = ''
         df2 = df2.shift()
