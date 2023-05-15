@@ -33,8 +33,8 @@ def sort_nicely(l):
     l.sort(key=alphanum_key)
 
 
-def get_filenames(base_path, folder):
-    filenames = glob.glob(base_path + folder + '/*.csv')
+def get_filenames(base_path, folder, files_type):
+    filenames = glob.glob(base_path + folder + '/*' + files_type)
     sort_nicely(filenames)
     return filenames
 

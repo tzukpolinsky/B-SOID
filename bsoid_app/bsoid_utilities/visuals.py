@@ -4,8 +4,6 @@ import pandas as pd
 import seaborn as sns
 import streamlit as st
 from matplotlib.axes._axes import _log as matplotlib_axes_logger
-from sklearn.metrics import plot_confusion_matrix
-
 matplotlib_axes_logger.setLevel('ERROR')
 
 
@@ -70,16 +68,16 @@ def plot_accuracy(scores):
     return fig, ax
 
 
-def plot_confusion(validate_clf, x_test, y_test):
-    titles_options = [("Non-normalized confusion matrix", None), ("Normalized confusion matrix", 'true')]
-    st.write(
-        'Two confusion matrices - top: counts, bottom: probability with **true positives in diagonal**')
-    confusion = []
-    for title, normalize in titles_options:
-        cm = plot_confusion_matrix(validate_clf, x_test, y_test, cmap=sns.cm.rocket_r, normalize=normalize)
-        cm.ax_.set_title(title)
-        confusion.append(cm.figure_)
-    return confusion
+# def plot_confusion(validate_clf, x_test, y_test):
+#     titles_options = [("Non-normalized confusion matrix", None), ("Normalized confusion matrix", 'true')]
+#     st.write(
+#         'Two confusion matrices - top: counts, bottom: probability with **true positives in diagonal**')
+#     confusion = []
+#     for title, normalize in titles_options:
+#         cm = plot_confusion_matrix(validate_clf, x_test, y_test, cmap=sns.cm.rocket_r, normalize=normalize)
+#         cm.ax_.set_title(title)
+#         confusion.append(cm.figure_)
+#     return confusion
 
 
 def plot_tmat(tm: object):
