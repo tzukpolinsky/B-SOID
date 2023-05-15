@@ -2,7 +2,8 @@ import getopt
 import sys
 from ast import literal_eval
 
-import numpy as np
+#import numpy as np
+import cupy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 

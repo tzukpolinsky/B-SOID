@@ -32,8 +32,9 @@ class preprocess:
 
         self.data_directories = []
         for d in os.listdir(self.root_path):
-            if os.path.isdir(d):
-                self.data_directories.append(os.path.join(self.root_path, d))
+            d2 = os.path.join(self.root_path, d)
+            if os.path.isdir(d2):
+                self.data_directories.append(d)
         self.framerate = framerate
         self.working_dir = working_dir
         try:
@@ -49,7 +50,7 @@ class preprocess:
             data_files = glob.glob(self.root_path + self.data_directories[0] + '/*.csv')
             file0_df = pd.read_csv(data_files[0], low_memory=False)
             file0_array = np.array(file0_df)
-            p = [file0_array[0, 1:-1:3]]
+            p = file0_array[0, 1:-1:3]
             for a in p:
                 index = [i for i, s in enumerate(file0_array[0, 1:]) if a in s]
                 if not index in self.pose_chosen:
@@ -159,9 +160,10 @@ class preprocess:
                       '**{}** data list.'.format(len(self.processed_input_data), self.ftype,
                                                  len(self.processed_input_data)))
         return [self.root_path, self.data_directories, self.framerate, self.pose_chosen, self.input_filenames,
-                         self.raw_input_data, self.processed_input_data, self.sub_threshold]
+                self.raw_input_data, self.processed_input_data, self.sub_threshold]
+
     def show_bar(self):
         visuals.plot_bar(self.sub_threshold)
 
-    def show_data_table(self):
-        visuals.show_data_table(self.raw_input_data, self.processed_input_data)
+    # def show_data_table(self):
+    #     visuals.show_data_table(self.raw_input_data, self.processed_input_data)

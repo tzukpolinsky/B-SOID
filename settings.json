@@ -1,0 +1,10 @@
+{
+  "working_dir":"/home/tzuk/Documents/psychology/bsoid/pain/server_output/",
+  "data_path": "/home/tzuk/Documents/psychology/bsoid/pain/vids/",
+  "software": "DeepLabCut",
+  "framerate": 30,
+  "train_size": 0.2,
+  "software_option": ["DeepLabCut","SLEAP","OpenPose"],
+  "file_type": "csv",
+  "file_type_options": ["csv","h5"]
+}

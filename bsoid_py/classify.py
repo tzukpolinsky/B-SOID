@@ -20,7 +20,7 @@ def bsoid_extract(data, bodyparts=BODYPARTS, fps=FPS):
     :param fps: scalar, input for camera frame-rate
     :return f_10fps: 2D array, extracted features
     """
-    win_len = np.int(np.round(0.05 / (1 / fps)) * 2 - 1)
+    win_len = int(np.round(0.05 / (1 / fps)) * 2 - 1)
     feats = []
     for m in range(len(data)):
         logging.info('Extracting features from CSV file {}...'.format(m + 1))

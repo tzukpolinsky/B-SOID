@@ -31,7 +31,7 @@ def bsoid_feats(data: list, fps=FPS):
     :return f_10fps: 2D array, features
     :return f_10fps_sc: 2D array, standardized/session features
     """
-    win_len = np.int(np.round(0.05 / (1 / fps)) * 2 - 1)
+    win_len = int(np.round(0.05 / (1 / fps)) * 2 - 1)
     feats = []
     for m in range(len(data)):
         logging.info('Extracting features from CSV file {}...'.format(m + 1))

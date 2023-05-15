@@ -16,7 +16,7 @@ from ast import literal_eval
 def get_kinematics(path, name, group_num, bp, FPS):
     appdata_ = appdata(path, name)
     _, _, filenames2, data_new, fs_labels = appdata_.load_predictions()
-    win_len = np.int(np.round(0.05 / (1 / FPS)) * 2 - 1)
+    win_len = int(np.round(0.05 / (1 / FPS)) * 2 - 1)
     bout_frames = []
     term_frame = []
     pose_all_animal = []

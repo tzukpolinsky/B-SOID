@@ -2,27 +2,26 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import streamlit as st
 from matplotlib.axes._axes import _log as matplotlib_axes_logger
 matplotlib_axes_logger.setLevel('ERROR')
 
 
 def plot_bar(sub_threshold):
-    st.write('If the below __% noise__ (y-axis) is unreasonable, consider refining pose-estimation software.')
+    print('If the below __% noise__ (y-axis) is unreasonable, consider refining pose-estimation software.')
     sub_threshold_df = pd.DataFrame(sub_threshold)
-    col1, col2 = st.beta_columns([3, 2])
-    col1.line_chart(sub_threshold_df)
-    col2.write(sub_threshold_df)
+    # col1, col2 = st.beta_columns([3, 2])
+    # col1.line_chart(sub_threshold_df)
+    # col2.write(sub_threshold_df)
 
 
-def show_data_table(raw_input_data, processed_input_data):
-    try:
-        ID = int(
-            st.number_input('Enter data file _index__:', min_value=1, max_value=len(raw_input_data), value=1))
-        st.write(raw_input_data[ID - 1])
-        st.write(processed_input_data[ID - 1])
-    except IndexError:
-        pass
+# def show_data_table(raw_input_data, processed_input_data):
+#     try:
+#         ID = int(
+#             st.number_input('Enter data file _index__:', min_value=1, max_value=len(raw_input_data), value=1))
+#         st.write(raw_input_data[ID - 1])
+#         st.write(processed_input_data[ID - 1])
+#     except IndexError:
+#         pass
 
 
 def plot_classes(data, assignments):

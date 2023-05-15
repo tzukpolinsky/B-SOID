@@ -29,7 +29,7 @@ def bsoid_tsne(data: list, bodyparts=BODYPARTS, fps=FPS, comp=COMP):
     :retrun f_10fps_sc: 2D array, standardized features
     :return trained_tsne: 2D array, trained t-SNE space
     """
-    win_len = np.int(np.round(0.05 / (1 / fps)) * 2 - 1)
+    win_len = int(np.round(0.05 / (1 / fps)) * 2 - 1)
     feats = []
     for m in range(len(data)):
         logging.info('Extracting features from CSV file {}...'.format(m + 1))

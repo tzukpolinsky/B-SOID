@@ -6,21 +6,22 @@ import sys
 from ast import literal_eval
 
 import matplotlib.pyplot as plt
-import numpy as np
+#import numpy as np
+import cupy as np
 from scipy.signal import find_peaks
 from tqdm import tqdm
 
-from analysis_subroutines.analysis_utilities.load_data import appdata
-from analysis_subroutines.analysis_utilities.processing import data_processing
-from analysis_subroutines.analysis_utilities.save_data import results
-from analysis_subroutines.analysis_utilities.statistics import rle
-from analysis_subroutines.analysis_utilities.visuals import plot_peaks
+from bsoid_app.analysis_subroutines.analysis_utilities.load_data import appdata
+from bsoid_app.analysis_subroutines.analysis_utilities.processing import data_processing
+from bsoid_app.analysis_subroutines.analysis_utilities.save_data import results
+from bsoid_app.analysis_subroutines.analysis_utilities.statistics import rle
+from bsoid_app.analysis_subroutines.analysis_utilities.visuals import plot_peaks
 
 
 def get_kinematics(path, name, exp, group_num, bp, fps):
     appdata_ = appdata(path, name)
     _, _, filenames2, data_new, fs_labels = appdata_.load_predictions()
-    win_len = np.int(np.round(0.05 / (1 / fps)) * 2 - 1)
+    win_len = int(np.round(0.05 / (1 / fps)) * 2 - 1)
     bout_frames = []
     term_frame = []
     pose_all_animal = []

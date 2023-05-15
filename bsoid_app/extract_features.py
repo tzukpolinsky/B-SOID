@@ -3,7 +3,9 @@ import math
 import os
 
 import joblib
-import numpy as np
+#import numpy as np
+import cupy as np
+
 import umap
 from psutil import virtual_memory
 from sklearn.decomposition import PCA
@@ -14,7 +16,7 @@ from bsoid_app.bsoid_utilities.load_workspace import load_feats, load_embeddings
 from bsoid_app.config import *
 
 
-class extract:
+class Extract:
 
     def __init__(self, working_dir, prefix, processed_input_data, framerate, train_size):
         self.working_dir = working_dir
@@ -42,7 +44,7 @@ class extract:
         try:
             [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
         except:
-            window = np.int(np.round(0.05 / (1 / self.framerate)) * 2 - 1)
+            window = int(np.round(0.05 / (1 / self.framerate)) * 2 - 1)
             f = []
             for n in range(len(self.processed_input_data)):
                 data_n_len = len(self.processed_input_data[n])
