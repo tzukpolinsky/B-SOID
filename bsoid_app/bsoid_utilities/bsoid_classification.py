@@ -1,8 +1,7 @@
 import itertools
 import math
 
-#import numpy as np
-import cupy as np
+import numpy as np
 
 from bsoid_app.bsoid_utilities.likelihoodprocessing import boxcar_center
 

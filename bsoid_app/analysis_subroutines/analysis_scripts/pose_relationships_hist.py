@@ -5,8 +5,7 @@ from ast import literal_eval
 from collections import OrderedDict
 
 import matplotlib.pyplot as plt
-#import numpy as np
-import cupy as np
+import numpy as np
 from matplotlib.pyplot import figure
 
 from analysis_utilities.load_data import appdata

@@ -2,8 +2,7 @@ import os
 
 import hdbscan
 import joblib
-#import numpy as np
-import cupy as np
+import numpy as np
 from bsoid_app.config import *
 from bsoid_app.bsoid_utilities import visuals
 from bsoid_app.bsoid_utilities.load_workspace import load_clusters

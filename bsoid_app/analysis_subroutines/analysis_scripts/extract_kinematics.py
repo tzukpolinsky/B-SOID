@@ -6,8 +6,7 @@ import sys
 from ast import literal_eval
 
 import matplotlib.pyplot as plt
-#import numpy as np
-import cupy as np
+import numpy as np
 from scipy.signal import find_peaks
 from tqdm import tqdm
 

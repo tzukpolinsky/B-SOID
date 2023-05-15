@@ -2,9 +2,7 @@ import getopt
 import sys
 from ast import literal_eval
 
-#import numpy as np
-import cupy as np
-
+import numpy as np
 from analysis_subroutines.analysis_utilities.load_data import appdata
 from analysis_subroutines.analysis_utilities.visuals import plot_trajectory
 

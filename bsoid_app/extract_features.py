@@ -3,9 +3,7 @@ import math
 import os
 
 import joblib
-#import numpy as np
-import cupy as np
-
+import numpy as np
 import umap
 from psutil import virtual_memory
 from sklearn.decomposition import PCA

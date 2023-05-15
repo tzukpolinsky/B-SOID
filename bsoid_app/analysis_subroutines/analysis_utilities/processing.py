@@ -1,8 +1,7 @@
 import re
 from operator import itemgetter
 
-#import numpy as np
-import cupy as np
+import numpy as np
 import pandas as pd
 
 

@@ -1,8 +1,7 @@
 import getopt
 import sys
 
-#import numpy as np
-import cupy as np
+import numpy as np
 
 from analysis_utilities.load_data import load_sav
 from analysis_utilities.visuals import plot_coherence_boxplot

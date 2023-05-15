@@ -3,8 +3,7 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
-#import numpy as np
-import cupy as np
+import numpy as np
 from matplotlib.axes._axes import _log as matplotlib_axes_logger
 from matplotlib.pyplot import figure
 
