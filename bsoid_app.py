@@ -37,6 +37,6 @@ def main():
     predictor = predict.Prediction(root_path, data_directories, input_filenames, processed_input_data, working_dir,
                                    prefix, framerate, pose_chosen, predictions, clf)
     predictor.main()
-
+    print("done bsoid")
 if __name__ == "__main__":
     main()
