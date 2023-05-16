@@ -38,7 +38,7 @@ class Extract:
 
     def compute(self):
         print('Extracting... ')
-        print(len(self.processed_input_data))
+        print(len(self.processed_input_data[0]))
         try:
             [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
         except:
