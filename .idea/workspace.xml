@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9aa6f6e-d1a4-4971-9a43-4847aa4541e7" name="Default Changelist" comment="maybe server version, unchecked">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bsoid_app/extract_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/bsoid_app/extract_features.py" afterDir="false" />
-    </list>
+    <list default="true" id="a9aa6f6e-d1a4-4971-9a43-4847aa4541e7" name="Default Changelist" comment="maybe server version, unchecked" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +83,7 @@
       <workItem from="1684133488284" duration="8035000" />
       <workItem from="1684144821059" duration="1733000" />
       <workItem from="1684165936360" duration="601000" />
-      <workItem from="1684219388149" duration="3459000" />
+      <workItem from="1684219388149" duration="3868000" />
     </task>
     <task id="LOCAL-00001" summary="dlc-models for publication.">
       <created>1612370293421</created>
@@ -123,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684138395797</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="maybe server version, unchecked">
+      <created>1684223679443</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684223679443</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,11 +156,6 @@
           <url>file://$PROJECT_DIR$/bsoid_app.py</url>
           <line>9</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/bsoid_app/extract_features.py</url>
-          <line>155</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
