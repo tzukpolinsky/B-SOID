@@ -37,8 +37,7 @@ class Extract:
               'If this does not sound right, the framerate might be wrong.'.format(self.train_size / 600))
 
     def compute(self):
-        print(str.join('', ('Extracting... Here is a random fact: ',
-                            '')))
+        print('Extracting... ')
         try:
             [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
         except:
@@ -69,7 +68,8 @@ class Extract:
                 dxy_boxcar = []
                 ang_boxcar = []
                 for l in range(disp_r.shape[1]):
-                    disp_boxcar.append(boxcar_center(disp_r[:, l], window))
+                    disp_boxcar.append(
+                        boxcar_center(disp_r[:, l], window))  # creating average moving window by the window size
                 for k in range(dxy_r.shape[1]):
                     for kk in range(data_n_len):
                         dxy_eu[kk, k] = np.linalg.norm(dxy_r[kk, k, :])
@@ -92,12 +92,10 @@ class Extract:
                     if k > round(self.framerate / 10):
                         f_integrated = np.concatenate(
                             (f_integrated.reshape(f_integrated.shape[0], f_integrated.shape[1]),
-                             np.hstack((np.mean((f[m][0:dxy_feat.shape[0],
-                                                 range(k - round(self.framerate / 10), k)]), axis=1),
-                                        np.sum((f[m][dxy_feat.shape[0]:f[m].shape[0],
-                                                range(k - round(self.framerate / 10), k)]), axis=1)
-                                        )).reshape(len(f[0]), 1)), axis=1
-                        )
+                             np.hstack((np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]),
+                                                axis=1), np.sum(
+                                 (f[m][dxy_feat.shape[0]:f[m].shape[0], range(k - round(self.framerate / 10), k)]),
+                                 axis=1))).reshape(len(f[0]), 1)), axis=1)
                     else:
                         f_integrated = np.hstack(
                             (np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]), axis=1),
@@ -162,13 +160,14 @@ class Extract:
         with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_embeddings.sav'))), 'wb') as f:
             joblib.dump([self.sampled_features, self.sampled_embeddings], f)
         return [self.sampled_features, self.sampled_embeddings]
+
     def main(self):
         try:
             [self.sampled_features, self.sampled_embeddings] = load_embeddings(self.working_dir, self.prefix)
             print('**_CHECK POINT_**: Done non-linear transformation of **{}** instances '
-                        'from **{}** D into **{}** D. Move on to __Identify and '
-                        'tweak number of clusters__'.format(*self.sampled_features.shape,
-                                                            self.sampled_embeddings.shape[1]))
+                  'from **{}** D into **{}** D. Move on to __Identify and '
+                  'tweak number of clusters__'.format(*self.sampled_features.shape,
+                                                      self.sampled_embeddings.shape[1]))
             self.subsample()
             return self.compute()
         except FileNotFoundError:
