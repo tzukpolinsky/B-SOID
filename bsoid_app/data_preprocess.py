@@ -49,6 +49,7 @@ class preprocess:
         if self.software == 'DeepLabCut' and self.ftype == 'csv':
             data_files = glob.glob(self.root_path + self.data_directories[0] + '/*.csv')
             print(data_files)
+            print(self.data_directories)
             file0_df = pd.read_csv(data_files[0], low_memory=False)
             file0_array = np.array(file0_df)
             p = file0_array[0, 1:-1:3]
