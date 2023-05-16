@@ -46,11 +46,9 @@ class preprocess:
         self.prefix = d4
 
     def compile_data(self):
+        glob_query = os.path.join(self.root_path , self.data_directories[0]) + '/*.'+self.ftype
+        data_files = glob.glob(glob_query)
         if self.software == 'DeepLabCut' and self.ftype == 'csv':
-            data_files = glob.glob(os.path.join(self.root_path , self.data_directories[0]) + '/*.csv')
-            print(data_files)
-            print(self.data_directories)
-            print(self.root_path)
             file0_df = pd.read_csv(data_files[0], low_memory=False)
             file0_array = np.array(file0_df)
             p = file0_array[0, 1:-1:3]
@@ -78,7 +76,6 @@ class preprocess:
                       '**{}** data list.'.format(len(self.processed_input_data), self.ftype,
                                                  len(self.processed_input_data)))
         elif self.software == 'DeepLabCut' and self.ftype == 'h5':
-            data_files = glob.glob(self.root_path + self.data_directories[0] + '/*.h5')
             file0_df = pd.read_hdf(data_files[0], low_memory=False)
             p = np.array(file0_df.columns.get_level_values(1)[1:-1:3])
             for a in p:
@@ -105,7 +102,6 @@ class preprocess:
                       '**{}** data list.'.format(len(self.processed_input_data), self.ftype,
                                                  len(self.processed_input_data)))
         elif self.software == 'SLEAP' and self.ftype == 'h5':
-            data_files = glob.glob(self.root_path + self.data_directories[0] + '/*.h5')
             file0_df = h5py.File(data_files[0], 'r')
             p = np.array(file0_df['node_names'][:])
             for a in p:
@@ -133,7 +129,6 @@ class preprocess:
                                                  len(self.processed_input_data)))
 
         elif self.software == 'OpenPose' and self.ftype == 'json':
-            data_files = glob.glob(self.root_path + self.data_directories[0] + '/*.json')
             file0_df = read_json_single(data_files[0])
             file0_array = np.array(file0_df)
             p = file0_array[0, 1:-1:3]
