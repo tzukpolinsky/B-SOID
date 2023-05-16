@@ -115,7 +115,6 @@ class Extract:
                 self.scaled_features = scaled_f_integrated
         self.features = np.array(self.features)
         self.scaled_features = np.array(self.scaled_features)
-        print(len(self.scaled_features[0]))
         with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_feats.sav'))), 'wb') as f:
             joblib.dump([self.features, self.scaled_features], f)
 
