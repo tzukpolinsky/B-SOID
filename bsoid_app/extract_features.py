@@ -38,7 +38,6 @@ class Extract:
 
     def compute(self):
         print('Extracting... ')
-        print(len(self.processed_input_data[0]))
         try:
             [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
         except:
@@ -116,6 +115,7 @@ class Extract:
                     self.scaled_features = scaled_f_integrated
             self.features = np.array(self.features)
             self.scaled_features = np.array(self.scaled_features)
+            print(len(self.scaled_features[0]))
             with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_feats.sav'))), 'wb') as f:
                 joblib.dump([self.features, self.scaled_features], f)
         print('Done extracting features from a total of **{}** training data files. '
