@@ -31,6 +31,7 @@ class preprocess:
             print("no such directory")
 
         self.data_directories = []
+        self.root_path += '' if '/' == self.root_path[-1] else '/'
         for d in os.listdir(self.root_path):
             d2 = os.path.join(self.root_path, d)
             if os.path.isdir(d2):

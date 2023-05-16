@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9aa6f6e-d1a4-4971-9a43-4847aa4541e7" name="Default Changelist" comment="maybe server version, unchecked">
-      <change beforePath="$PROJECT_DIR$/bsoid_app/data_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/bsoid_app/data_preprocess.py" afterDir="false" />
-    </list>
+    <list default="true" id="a9aa6f6e-d1a4-4971-9a43-4847aa4541e7" name="Default Changelist" comment="removed some code duplication" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +175,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dlc-models for publication." />
     <MESSAGE value="maybe server version, unchecked" />
-    <option name="LAST_COMMIT_MESSAGE" value="maybe server version, unchecked" />
+    <MESSAGE value="removed some code duplication" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed some code duplication" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
