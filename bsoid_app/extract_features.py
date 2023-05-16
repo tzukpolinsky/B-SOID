@@ -45,6 +45,7 @@ class Extract:
             f = []
             for n in range(len(self.processed_input_data)):
                 data_n_len = len(self.processed_input_data[n])
+                print(data_n_len)
                 dxy_list = []
                 disp_list = []
                 for r in range(data_n_len):
@@ -162,14 +163,14 @@ class Extract:
         return [self.sampled_features, self.sampled_embeddings]
 
     def main(self):
-        # try:
-        #     [self.sampled_features, self.sampled_embeddings] = load_embeddings(self.working_dir, self.prefix)
-        #     print('**_CHECK POINT_**: Done non-linear transformation of **{}** instances '
-        #           'from **{}** D into **{}** D. Move on to __Identify and '
-        #           'tweak number of clusters__'.format(*self.sampled_features.shape,
-        #                                               self.sampled_embeddings.shape[1]))
-        #     self.subsample()
-        #     return self.compute()
-        # except FileNotFoundError:
-        self.subsample()
-        return self.compute()
+        try:
+            [self.sampled_features, self.sampled_embeddings] = load_embeddings(self.working_dir, self.prefix)
+            print('**_CHECK POINT_**: Done non-linear transformation of **{}** instances '
+                  'from **{}** D into **{}** D. Move on to __Identify and '
+                  'tweak number of clusters__'.format(*self.sampled_features.shape,
+                                                      self.sampled_embeddings.shape[1]))
+            self.subsample()
+            return self.compute()
+        except FileNotFoundError:
+            self.subsample()
+            return self.compute()
