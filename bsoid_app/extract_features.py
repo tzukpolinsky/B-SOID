@@ -38,89 +38,91 @@ class Extract:
 
     def compute(self):
         print('Extracting... ')
-        try:
-            [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
-        except:
-            window = int(np.round(0.05 / (1 / self.framerate)) * 2 - 1)
-            f = []
-            for n in range(len(self.processed_input_data)):
-                data_n_len = len(self.processed_input_data[n])
-                dxy_list = []
-                disp_list = []
-                for r in range(data_n_len):
-                    if r < data_n_len - 1:
-                        disp = []
-                        for c in range(0, self.processed_input_data[n].shape[1], 2):
-                            disp.append(
-                                np.linalg.norm(self.processed_input_data[n][r + 1, c:c + 2] -
-                                               self.processed_input_data[n][r, c:c + 2]))
-                        disp_list.append(disp)
-                    dxy = []
-                    for i, j in itertools.combinations(range(0, self.processed_input_data[n].shape[1], 2), 2):
-                        dxy.append(self.processed_input_data[n][r, i:i + 2] -
-                                   self.processed_input_data[n][r, j:j + 2])
-                    dxy_list.append(dxy)
-                disp_r = np.array(disp_list)
-                dxy_r = np.array(dxy_list)
-                disp_boxcar = []
-                dxy_eu = np.zeros([data_n_len, dxy_r.shape[1]])
-                ang = np.zeros([data_n_len - 1, dxy_r.shape[1]])
-                dxy_boxcar = []
-                ang_boxcar = []
-                for l in range(disp_r.shape[1]):
-                    disp_boxcar.append(
-                        boxcar_center(disp_r[:, l], window))  # creating average moving window by the window size
-                for k in range(dxy_r.shape[1]):
-                    for kk in range(data_n_len):
-                        dxy_eu[kk, k] = np.linalg.norm(dxy_r[kk, k, :])
-                        if kk < data_n_len - 1:
-                            b_3d = np.hstack([dxy_r[kk + 1, k, :], 0])
-                            a_3d = np.hstack([dxy_r[kk, k, :], 0])
-                            c = np.cross(b_3d, a_3d)
-                            ang[kk, k] = np.dot(np.dot(np.sign(c[2]), 180) / np.pi,
-                                                math.atan2(np.linalg.norm(c),
-                                                           np.dot(dxy_r[kk, k, :], dxy_r[kk + 1, k, :])))
-                    dxy_boxcar.append(boxcar_center(dxy_eu[:, k], window))
-                    ang_boxcar.append(boxcar_center(ang[:, k], window))
-                disp_feat = np.array(disp_boxcar)
-                dxy_feat = np.array(dxy_boxcar)
-                ang_feat = np.array(ang_boxcar)
-                f.append(np.vstack((dxy_feat[:, 1:], ang_feat, disp_feat)))
-            for m in range(0, len(f)):
-                f_integrated = np.zeros(len(self.processed_input_data[m]))
-                for k in range(round(self.framerate / 10), len(f[m][0]), round(self.framerate / 10)):
-                    if k > round(self.framerate / 10):
-                        f_integrated = np.concatenate(
-                            (f_integrated.reshape(f_integrated.shape[0], f_integrated.shape[1]),
-                             np.hstack((np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]),
-                                                axis=1), np.sum(
-                                 (f[m][dxy_feat.shape[0]:f[m].shape[0], range(k - round(self.framerate / 10), k)]),
-                                 axis=1))).reshape(len(f[0]), 1)), axis=1)
-                    else:
-                        f_integrated = np.hstack(
-                            (np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]), axis=1),
-                             np.sum((f[m][dxy_feat.shape[0]:f[m].shape[0],
-                                     range(k - round(self.framerate / 10), k)]), axis=1))).reshape(len(f[0]), 1)
-                if m > 0:
-                    self.features = np.concatenate((self.features, f_integrated), axis=1)
-                    scaler = StandardScaler()
-                    scaler.fit(f_integrated.T)
-                    scaled_f_integrated = scaler.transform(f_integrated.T).T
-                    self.scaled_features = np.concatenate((self.scaled_features, scaled_f_integrated), axis=1)
+        # try:
+        #     [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
+        # except:
+        window = int(np.round(0.05 / (1 / self.framerate)) * 2 - 1)
+        f = []
+        for n in range(len(self.processed_input_data)):
+            data_n_len = len(self.processed_input_data[n])
+            dxy_list = []
+            disp_list = []
+            for r in range(data_n_len):
+                if r < data_n_len - 1:
+                    disp = []
+                    for c in range(0, self.processed_input_data[n].shape[1], 2):
+                        disp.append(
+                            np.linalg.norm(self.processed_input_data[n][r + 1, c:c + 2] -
+                                           self.processed_input_data[n][r, c:c + 2]))
+                    disp_list.append(disp)
+                dxy = []
+                for i, j in itertools.combinations(range(0, self.processed_input_data[n].shape[1], 2), 2):
+                    dxy.append(self.processed_input_data[n][r, i:i + 2] -
+                               self.processed_input_data[n][r, j:j + 2])
+                dxy_list.append(dxy)
+            disp_r = np.array(disp_list)
+            dxy_r = np.array(dxy_list)
+            disp_boxcar = []
+            dxy_eu = np.zeros([data_n_len, dxy_r.shape[1]])
+            ang = np.zeros([data_n_len - 1, dxy_r.shape[1]])
+            dxy_boxcar = []
+            ang_boxcar = []
+            for l in range(disp_r.shape[1]):
+                disp_boxcar.append(
+                    boxcar_center(disp_r[:, l], window))  # creating average moving window by the window size
+            for k in range(dxy_r.shape[1]):
+                for kk in range(data_n_len):
+                    dxy_eu[kk, k] = np.linalg.norm(dxy_r[kk, k, :])
+                    if kk < data_n_len - 1:
+                        b_3d = np.hstack([dxy_r[kk + 1, k, :], 0])
+                        a_3d = np.hstack([dxy_r[kk, k, :], 0])
+                        c = np.cross(b_3d, a_3d)
+                        ang[kk, k] = np.dot(np.dot(np.sign(c[2]), 180) / np.pi,
+                                            math.atan2(np.linalg.norm(c),
+                                                       np.dot(dxy_r[kk, k, :], dxy_r[kk + 1, k, :])))
+                dxy_boxcar.append(boxcar_center(dxy_eu[:, k], window))
+                ang_boxcar.append(boxcar_center(ang[:, k], window))
+            disp_feat = np.array(disp_boxcar)
+            dxy_feat = np.array(dxy_boxcar)
+            ang_feat = np.array(ang_boxcar)
+            f.append(np.vstack((dxy_feat[:, 1:], ang_feat, disp_feat)))
+        for m in range(0, len(f)):
+            f_integrated = np.zeros(len(self.processed_input_data[m]))
+            for k in range(round(self.framerate / 10), len(f[m][0]), round(self.framerate / 10)):
+                if k > round(self.framerate / 10):
+                    f_integrated = np.concatenate(
+                        (f_integrated.reshape(f_integrated.shape[0], f_integrated.shape[1]),
+                         np.hstack((np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]),
+                                            axis=1), np.sum(
+                             (f[m][dxy_feat.shape[0]:f[m].shape[0], range(k - round(self.framerate / 10), k)]),
+                             axis=1))).reshape(len(f[0]), 1)), axis=1)
                 else:
-                    self.features = f_integrated
-                    scaler = StandardScaler()
-                    scaler.fit(f_integrated.T)
-                    scaled_f_integrated = scaler.transform(f_integrated.T).T
-                    self.scaled_features = scaled_f_integrated
-            self.features = np.array(self.features)
-            self.scaled_features = np.array(self.scaled_features)
-            print(len(self.scaled_features[0]))
-            with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_feats.sav'))), 'wb') as f:
-                joblib.dump([self.features, self.scaled_features], f)
+                    f_integrated = np.hstack(
+                        (np.mean((f[m][0:dxy_feat.shape[0], range(k - round(self.framerate / 10), k)]), axis=1),
+                         np.sum((f[m][dxy_feat.shape[0]:f[m].shape[0],
+                                 range(k - round(self.framerate / 10), k)]), axis=1))).reshape(len(f[0]), 1)
+            if m > 0:
+                self.features = np.concatenate((self.features, f_integrated), axis=1)
+                scaler = StandardScaler()
+                scaler.fit(f_integrated.T)
+                scaled_f_integrated = scaler.transform(f_integrated.T).T
+                self.scaled_features = np.concatenate((self.scaled_features, scaled_f_integrated), axis=1)
+            else:
+                self.features = f_integrated
+                scaler = StandardScaler()
+                scaler.fit(f_integrated.T)
+                scaled_f_integrated = scaler.transform(f_integrated.T).T
+                self.scaled_features = scaled_f_integrated
+        self.features = np.array(self.features)
+        self.scaled_features = np.array(self.scaled_features)
+        print(len(self.scaled_features[0]))
+        with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_feats.sav'))), 'wb') as f:
+            joblib.dump([self.features, self.scaled_features], f)
+
         print('Done extracting features from a total of **{}** training data files. '
               'Now reducing dimensions...'.format(len(self.processed_input_data)))
         return self.learn_embeddings()
+
 
     def learn_embeddings(self):
         input_feats = self.scaled_features.T
@@ -161,6 +163,7 @@ class Extract:
         with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_embeddings.sav'))), 'wb') as f:
             joblib.dump([self.sampled_features, self.sampled_embeddings], f)
         return [self.sampled_features, self.sampled_embeddings]
+
 
     def main(self):
         try:
