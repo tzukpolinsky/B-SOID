@@ -38,6 +38,7 @@ class Extract:
 
     def compute(self):
         print('Extracting... ')
+        print(len(self.processed_input_data))
         try:
             [self.features, self.scaled_features] = load_feats(self.working_dir, self.prefix)
         except:
@@ -45,7 +46,6 @@ class Extract:
             f = []
             for n in range(len(self.processed_input_data)):
                 data_n_len = len(self.processed_input_data[n])
-                print(data_n_len)
                 dxy_list = []
                 disp_list = []
                 for r in range(data_n_len):
