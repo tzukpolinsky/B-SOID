@@ -1,3 +1,4 @@
+import glob
 import os
 from datetime import date
 
@@ -47,8 +48,10 @@ class preprocess:
         self.prefix = d4
 
     def compile_data(self):
-        glob_query = os.path.join(self.root_path , self.data_directories[0]) + '/*.'+self.ftype
+        glob_query = os.path.join(self.root_path, self.data_directories[0]) + '/*.' + self.ftype
         data_files = glob.glob(glob_query)
+        glob_query = self.root_path + '/*.' + self.ftype
+        data_files += glob.glob(glob_query)
         if self.software == 'DeepLabCut' and self.ftype == 'csv':
             file0_df = pd.read_csv(data_files[0], low_memory=False)
             file0_array = np.array(file0_df)
