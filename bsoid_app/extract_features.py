@@ -118,7 +118,7 @@ class Extract:
         with open(os.path.join(self.working_dir, str.join('', (self.prefix, '_feats.sav'))), 'wb') as f:
             joblib.dump([self.features, self.scaled_features], f)
 
-        rint('Done extracting features from a total of **{}** training data files. '
+        print('Done extracting features from a total of **{}** training data files. '
               'Now reducing dimensions...'.format(len(self.processed_input_data)))
         return self.learn_embeddings()
 
