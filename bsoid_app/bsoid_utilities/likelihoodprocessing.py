@@ -94,8 +94,6 @@ def adp_filt(currdf: object, pose):
     for x in tqdm(range(data_lh.shape[1])):
         a, b = np.histogram(data_lh[1:, x].astype(float))
         rise_a = np.where(np.diff(a) >= 0)
-        if len(rise_a[0]) != 2:
-            continue
         if rise_a[0][0] > 1:
             llh = b[rise_a[0][0]]
         else:
