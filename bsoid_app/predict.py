@@ -134,7 +134,7 @@ class Prediction:
             runlen_df, dur_stats, tm_array, tm_df, tm_norm = statistics.main(self.new_predictions[i],
                                                                              len(np.unique(self.predictions)))
             try:
-                os.mkdir(str.join('', (self.new_root_path, self.folder[i], '/BSOID')))
+                os.mkdir(str.join('', (self.working_dir, self.folder[i], '/BSOID')))
             except FileExistsError:
                 pass
             if any('Labels tagged onto pose files' in o for o in self.options):
