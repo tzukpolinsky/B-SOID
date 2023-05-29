@@ -1,4 +1,5 @@
 import glob
+import os.path
 import sys
 from datetime import date
 
@@ -52,6 +53,8 @@ def file_by_file(settings):
     # root_path, data_directories, framerate, pose_chosen, input_filenames, raw_input_data, processed_input_data, sub_threshold = processor.compile_data()
 
     for data_file in data_files:
+        if not os.path.isfile(data_file):
+            continue
         today = date.today()
         d4 = today.strftime("%b-%d-%Y")
         prefix = d4 + data_file.split("/")[0]
