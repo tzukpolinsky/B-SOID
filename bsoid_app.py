@@ -50,11 +50,12 @@ def file_by_file(settings):
     # processor = data_preprocess.preprocess(settings["software"], settings["file_type"], settings["data_path"],
     #                                        int(settings["framerate"]), working_dir)
     # root_path, data_directories, framerate, pose_chosen, input_filenames, raw_input_data, processed_input_data, sub_threshold = processor.compile_data()
+
     for data_file in data_files:
         today = date.today()
         d4 = today.strftime("%b-%d-%Y")
         prefix = d4 + data_file
-        working_dir = settings["working_dir"] + "/" + prefix
+        working_dir = settings["data_path"] + "/" + prefix
         os.mkdir(working_dir)
         root_path, data_directories, framerate, pose_chosen, input_filenames, raw_input_data, processed_input_data, sub_threshold = compile_single_file(
             os.path.join(settings["data_path"], data_file), working_dir, prefix, int(settings["framerate"]),
