@@ -57,7 +57,7 @@ def file_by_file(settings):
             continue
         today = date.today()
         d4 = today.strftime("%b-%d-%Y")
-        prefix = d4 + data_file.split("/")[0]
+        prefix = d4 + data_file.split("-")[0]
         working_dir = settings["data_path"] + "/" + prefix
         try:
             os.mkdir(working_dir)
