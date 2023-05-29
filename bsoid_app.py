@@ -59,7 +59,10 @@ def file_by_file(settings):
         d4 = today.strftime("%b-%d-%Y")
         prefix = d4 + data_file.split("/")[0]
         working_dir = settings["data_path"] + "/" + prefix
-        os.mkdir(working_dir)
+        try:
+            os.mkdir(working_dir)
+        except:
+            print("overriding " + prefix)
         root_path, data_directories, framerate, pose_chosen, input_filenames, raw_input_data, processed_input_data, sub_threshold = compile_single_file(
             os.path.join(settings["data_path"], data_file), working_dir, prefix, int(settings["framerate"]),
             settings["data_path"])
