@@ -63,6 +63,7 @@ def file_by_file(settings):
             os.mkdir(working_dir)
         except:
             print("overriding " + prefix)
+        print("results will be at " + working_dir)
         root_path, data_directories, framerate, pose_chosen, input_filenames, raw_input_data, processed_input_data, sub_threshold = compile_single_file(
             os.path.join(settings["data_path"], data_file), working_dir, prefix, int(settings["framerate"]),
             settings["data_path"])
