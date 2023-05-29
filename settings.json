@@ -1,10 +1,18 @@
 {
-  "working_dir":"/home/tzuk/Documents/psychology/bsoid/pain/server_output/",
-  "data_path": "/home/tzuk/Documents/psychology/bsoid/pain/vids/",
+  "working_dir": "/home/tzuk/Desktop/bsoid_roni_data/pre_results/",
+  "data_path": "/home/tzuk/Desktop/bsoid_roni_data/pre/",
   "software": "DeepLabCut",
   "framerate": 30,
   "train_size": 0.2,
-  "software_option": ["DeepLabCut","SLEAP","OpenPose"],
+  "software_option": [
+    "DeepLabCut",
+    "SLEAP",
+    "OpenPose"
+  ],
   "file_type": "csv",
-  "file_type_options": ["csv","h5"]
+  "file_type_options": [
+    "csv",
+    "h5"
+  ],
+  "is_file_by_file": true
 }
